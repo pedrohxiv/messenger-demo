@@ -2,13 +2,13 @@ import prisma from '@/libs/prismadb';
 import { getSession } from '@/actions/getSession';
 
 export async function getUsers() {
-  const session = await getSession();
-
-  if (!session?.user?.email) {
-    return [];
-  }
-
   try {
+    const session = await getSession();
+
+    if (!session?.user?.email) {
+      return [];
+    }
+
     const users = await prisma.user.findMany({
       orderBy: {
         createdAt: 'desc',

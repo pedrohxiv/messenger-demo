@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
-import { type FieldValues, type SubmitHandler, useForm } from 'react-hook-form';
+import { type FieldValues, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
@@ -48,7 +48,7 @@ export function AuthForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  function onSubmit(data: FieldValues) {
     setIsLoading(true);
 
     if (variant === 'REGISTER') {
@@ -72,7 +72,7 @@ export function AuthForm() {
         })
         .finally(() => setIsLoading(false));
     }
-  };
+  }
 
   const socialAction = (action: string) => {
     setIsLoading(true);
