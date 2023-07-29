@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
+import { NextResponse } from 'next/server';
 
 import prisma from '@/libs/prismadb';
-import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
