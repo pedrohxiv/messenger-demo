@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 
+import { ActiveStatus } from '@/components/active-status';
 import { ToasterContext } from '@/context/toaster-context';
 import { AuthContext } from '@/context/auth-context';
 
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <AuthContext>
           <ToasterContext />
+          <ActiveStatus />
           {children}
         </AuthContext>
       </body>

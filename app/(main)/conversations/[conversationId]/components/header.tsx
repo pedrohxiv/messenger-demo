@@ -8,6 +8,7 @@ import { HiChevronLeft, HiEllipsisHorizontal } from 'react-icons/hi2';
 import { AvatarGroup } from '@/components/avatar-group';
 import { Avatar } from '@/components/avatar';
 import { useOtherUser } from '@/hooks/useOtherUser';
+import { useActiveList } from '@/hooks/useActiveList';
 
 import { ProfileDrawer } from './profile-drawer';
 
@@ -19,13 +20,16 @@ export function Header({ conversation }: HeaderProps) {
   const otherUser = useOtherUser(conversation);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const { members } = useActiveList();
+  const isActive = members.indexOf(otherUser?.email!) !== -1;
+
   const statusText = useMemo(() => {
     if (conversation.isGroup) {
       return `${conversation.users.length} members`;
     }
 
-    return `Active`;
-  }, [conversation]);
+    return isActive ? 'Active' : 'Offline';
+  }, [conversation, isActive]);
 
   return (
     <>
